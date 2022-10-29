@@ -1,10 +1,13 @@
 // Filename: appclient.js
-// Student: Julio Vinicius
-// StudentId: 123456789
-// Date: Jun 02, 2022
+// Student: Matheus Teixeira
+// StudentId: 301236904
+// Date: Oct 29, 2022
+// Author: Julio Vinicius
+// Webapp: todo
 
 console.log('app script is working.');
 
+//Asks for confiramtion before deleting any data
 if(getTitle == "To-Do List")
 {
     let deleteButtons = document.querySelectorAll('.btn-danger');
@@ -20,6 +23,8 @@ if(getTitle == "To-Do List")
     }
 }
 
+//Check if tha page is singup, if it is creates a listener to check if both
+//password fields match
 if(getTitle == "Sign-up Form")
 {
     const confirm = document.querySelector('input[name=password_confirm]');
@@ -27,6 +32,7 @@ if(getTitle == "Sign-up Form")
     confirm.addEventListener('change', onChange); 
 }
 
+//Compare fiels password and confirm password to see if they match
 function onChange() {
     const password = document.querySelector('input[name=password]');
     const confirm = document.querySelector('input[name=password_confirm]');
