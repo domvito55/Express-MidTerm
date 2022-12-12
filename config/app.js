@@ -1,3 +1,4 @@
+// === include dependencies === //
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -10,15 +11,17 @@ let session = require('express-session');
 let flash = require('connect-flash');
 let passport = require('passport');
 
+// === creating express framework === //
 let app = express();
 
+//middleware to keep the user session in the app
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: "sessionSecret"
 }));
 
-
+// === including routes === //
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let todoRouter = require('../routes/todo');
@@ -27,6 +30,7 @@ let todoRouter = require('../routes/todo');
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
+// === registering middleware === //
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,11 +39,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 
 // Sets up passport
+// flash to handle error messages
+// passaport to handle authentication strategies
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// registering routers middleware
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/todo', todoRouter);
